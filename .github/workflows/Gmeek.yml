@@ -44,12 +44,11 @@ jobs:
 
       - name: Generate new html
         run: |
-          cp config.json /opt/Gmeek/
+          cp ./* /opt/Gmeek/
           cd /opt/Gmeek/
           cat config.json
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
           cp -a /opt/Gmeek/docs/. ${{ github.workspace }} 
-          ls
         
       - name: update html
         run: |
