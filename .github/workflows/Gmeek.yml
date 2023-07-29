@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate new html
         run: |
-          cp ./* /opt/Gmeek/
+          cp -r ./* /opt/Gmeek/
           cd /opt/Gmeek/
           ls
           cat config.json
