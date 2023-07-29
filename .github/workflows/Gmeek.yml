@@ -52,10 +52,12 @@ jobs:
           pwd
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
           cp -r /opt/Gmeek/docs/ /home/runner/work/duckqing.github.io/duckqing.github.io
+          df -h
         
       - name: update html
         run: |
           pwd
+          df -h
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
           git add .
