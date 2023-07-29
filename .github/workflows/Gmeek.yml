@@ -9,6 +9,16 @@ env:
   GITHUB_NAME: duckqing
   GITHUB_EMAIL: 294977308@qq.com
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+
 jobs:
   sync:
     name: Generate blog
@@ -34,7 +44,9 @@ jobs:
 
       - name: Generate new html
         run: |
+          cp config.json /opt/Gmeek/
           cd /opt/Gmeek
+          
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
           cp -a /opt/Gmeek/docs/. /home/runner/work/duckqing.github.io/duckqing.github.io/
           ls
@@ -47,3 +59,24 @@ jobs:
           git add .
           git commit -a -m '🎉auto update by action' || echo "nothing to commit"
           git push || echo "nothing to push"
+          
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        
