@@ -46,6 +46,7 @@ jobs:
         run: |
           cp ./* /opt/Gmeek/
           cd /opt/Gmeek/
+          ls
           cat config.json
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
           cp -a /opt/Gmeek/docs/. ${{ github.workspace }} 
