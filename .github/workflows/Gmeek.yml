@@ -36,12 +36,11 @@ jobs:
         run: |
           cd /opt/Gmeek
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
-          cp -r /opt/Gmeek/docs /home/runner/work/duckqing.github.io/duckqing.github.io/
+          cp -a /opt/Gmeek/docs/. /home/runner/work/duckqing.github.io/duckqing.github.io/
           ls
         
       - name: update html
         run: |
-          pwd
           ls
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
