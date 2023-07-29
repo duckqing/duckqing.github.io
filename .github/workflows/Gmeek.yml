@@ -32,27 +32,23 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd /opt/Gmeek
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r /opt/Gmeek/requirements.txt
 
       - name: Generate new html
         run: |
           cp config.json /opt/Gmeek/
-          cd /opt/Gmeek
-          cat config.json
-          
-          python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
-          cp -a /opt/Gmeek/docs/. /home/runner/work/duckqing.github.io/duckqing.github.io/
+          cat /opt/Gmeek/config.json
+          python /opt/Gmeek/Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
+          cp -a /opt/Gmeek/docs/. ./
           ls
         
       - name: update html
         run: |
-          ls
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
           git add .
-          git commit -a -m '🎉auto update by action' || echo "nothing to commit"
+          git commit -a -m '🎉auto update by Gmeek action' || echo "nothing to commit"
           git push || echo "nothing to push"
         
       - name: Checkout
