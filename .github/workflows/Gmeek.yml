@@ -36,7 +36,7 @@ jobs:
         run: |
           cd /opt/Gmeek
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
-          cp -r /opt/Gmeek/docs/ /home/runner/work/duckqing.github.io/duckqing.github.io
+          cp -r /opt/Gmeek/docs /home/runner/work/duckqing.github.io/duckqing.github.io/
           ls
         
       - name: update html
