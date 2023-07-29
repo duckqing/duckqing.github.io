@@ -38,9 +38,14 @@ jobs:
       - name: Generate new html
         run: |
           cp config.json /opt/Gmeek/
-          cat /opt/Gmeek/config.json
-          python /opt/Gmeek/Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
-          cp -a /opt/Gmeek/docs/. ./
+          cd /opt/Gmeek/
+          cat config.json
+          python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
+          echo ${{ github.repository }}
+          echo ${{ env.GITHUB_ACTION_REPOSITORY }} 
+          echo ${{ env.GITHUB_BASE_REF }} 
+          echo ${{ env.GITHUB_PATH }} 
+          echo ${{ env.GITHUB_WORKFLOW_REF }} 
           ls
         
       - name: update html
