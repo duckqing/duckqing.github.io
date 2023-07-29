@@ -7,7 +7,7 @@ on:
 
 env:
   GITHUB_NAME: duckqing
-  GITHUB_EMAIL: meekdai@163.com
+  GITHUB_EMAIL: 294977308@qq.com
 
 jobs:
   sync:
@@ -51,10 +51,11 @@ jobs:
           cd /opt/Gmeek
           pwd
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
+          cp /opt/Gmeek/docs/ /home/runner/work/duckqing.github.io/duckqing.github.io
         
       - name: update html
         run: |
-          
+          pwd
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
           git add .
