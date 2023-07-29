@@ -46,14 +46,15 @@ jobs:
 
       - name: Generate new html
         run: |
-          df -h
-          cd /opt/Gmeek
-          df -h
           source venv/bin/activate
+          pwd
+          cd /opt/Gmeek
+          pwd
           python Gmeek.py ${{ secrets.meblog }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
         
       - name: update html
         run: |
+          
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
           git add .
