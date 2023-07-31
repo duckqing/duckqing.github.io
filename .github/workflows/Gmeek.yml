@@ -8,6 +8,7 @@ on:
 env:
   GITHUB_NAME: duckqing
   GITHUB_EMAIL: 294977308@qq.com
+  Gmeek_Version: v1.0
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
 
       - name: Clone source code
         run: |
-          git clone https://github.com/Meekdai/Gmeek.git /opt/Gmeek
+          git clone -b ${{ env.Gmeek_Version }} https://github.com/Meekdai/Gmeek.git /opt/Gmeek
 
       - name: Install dependencies
         run: |
