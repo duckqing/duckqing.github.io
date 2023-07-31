@@ -8,7 +8,7 @@ on:
 env:
   GITHUB_NAME: duckqing
   GITHUB_EMAIL: 294977308@qq.com
-  GMEEK_VERSION: v1.2
+  GMEEK_VERSION: v1.1
 
 jobs:
   build:
