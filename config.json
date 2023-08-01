@@ -1,14 +1,16 @@
 {
     "title":"duckqing",
-    "displayTitle":"DuckQing",
+    "displayTitle":"Duckqing",
     "subTitle":"啦啦啦~",
     "homeUrl":"http://duckqing.github.io",
     "avatarUrl":"https://avatars.githubusercontent.com/u/140582771?v=4",
     "faviconUrl":"",
+    "email":"meekdai@163.com",
     "startSite":"02/16/2015",
     "filingNum":"",
     "singlePage":["link","about"],
     "commentLabelColor":"#006b75",
     "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
-    "i18n":"CN"
+    "i18n":"CN",
+    "GMEEK_VERSION":"v1.2"
 }
